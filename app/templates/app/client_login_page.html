@@ -1,0 +1,69 @@
+<html lang="en-us" >
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/login.css" />
+
+</head>
+<body class=" login"
+data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+            <h1 id="site-name" style="color:white">Войти</a></h1>
+
+        </div>
+        
+        
+    </div>
+    <!-- END Header -->
+    <!-- Content -->
+    <div id="content" class="colM">
+
+        <div id="content-main" width = 40%>
+           <form method="post" id="login-form">
+            {% csrf_token %}  
+            <fieldset class="form-group">
+              <label class="control-label" >Имя пользователя</label>
+
+              <div class="form-control">
+                  <input type="text" class="form-control"
+                  name="{{ form.username.name }}" > 
+                  {{form.username.errors}}  
+              </div>
+          </fieldset>
+
+          <fieldset class="form-group">
+              <label class="control-label" > Пароль</label>
+              <div class="form-control">
+                  <input type="password" class="form-control"
+                  name="{{ form.password.name }}"
+                  id="id_{{ form.password.name }}" > 
+                  {{form.password.errors}} 
+              </div>
+
+          </fieldset>
+
+          <input type="submit" value="Войти"  class="btn btn-primary">
+          <br>
+          <a href="/register">Регистрация </a>
+      </form>
+
+
+  </div>   
+
+  <br class="clear" />
+</div>
+<!-- END Content -->
+
+<div id="footer"></div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>
