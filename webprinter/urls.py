@@ -20,6 +20,7 @@ from app import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^register$',views.client_register),
-    url(r'',views.client_login)
+    url(r'^login',views.client_login),
+    url(r'^',views.client_homepage)
     
 ]

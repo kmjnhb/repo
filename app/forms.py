@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Client
+from django.contrib import auth
 
 
 class RegisterUserForm(forms.ModelForm):
@@ -15,6 +16,10 @@ class RegisterClientForm(forms.ModelForm):
 
 
 
+class UserLoginForm(forms.ModelForm):
+	class Meta:
+		model = User
+		fields = ['username','password']
 
 
 
