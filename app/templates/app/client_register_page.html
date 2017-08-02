@@ -1,0 +1,43 @@
+<html lang="en-us" >
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/login.css" />
+    <meta name="robots" content="NONE,NOARCHIVE" />
+</head>
+<body class=" login">
+
+<!-- Container -->
+<div id="container">
+
+
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+            <h1 id="site-name" style="color:white">Регистрация</a></h1>
+
+        </div>
+        
+        
+    </div>
+    <!-- END Header -->
+    <!-- Content -->
+    <div id="content" class="colM" width = 1000>
+        <div id="content-main" width = 40%>
+            <form class="form-contact" action="" method="POST">
+                {% csrf_token %} 
+                {{user_form.as_p}}
+                {{client_form.as_p}}
+              
+              <input type="submit" value="Подтвердить"  class="btn btn-primary">
+
+          </form>
+          <a href="login" style ="text-align:right">Войти</a>
+      </div>
+
+  </div>   
+
+  <!-- END Container -->
+
+</body>
+</html>
