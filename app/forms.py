@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Client
+from .models import Printing
 from django.contrib import auth
 
 
@@ -45,6 +46,12 @@ class UserLoginForm(forms.ModelForm):
 
 
 
+
+
+class UploadFileForm(forms.ModelForm):
+	class Meta:
+		model = Printing
+		fields = ['fi','is_colored','with_clip','with_clamp']
 
 
 

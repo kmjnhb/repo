@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .forms import RegisterClientForm
 from .forms import RegisterUserForm
 from .forms import UserLoginForm
+from .forms import UploadFileForm
 from .models import Client
 from django.contrib import auth
 # Create your views here.
@@ -34,6 +35,28 @@ def client_login(request):
 def manager_login(request):
 	pass
 	
+
+#представление для загруженного файла
+
+def upload(request):
+	if request.method =='POST':
+		upload_form = UploadFileForm(request.POST, request.FILES)
+		if upload_form.is_valid():
+			return HttpResponse('OK')
+		
+
+	else:
+		upload_form=UploadFileForm()
+	return render(request,'app/upload.html',{'upload_form':upload_form})
+		
+	
+
+
+
+
+
+
+
 
 
 def client_register(request):

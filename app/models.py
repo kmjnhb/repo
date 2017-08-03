@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib import admin
-
+from .validators import validate_file
 
 class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -32,9 +32,23 @@ class Manager(models.Model):
 
 
 
+class Printing(models.Model):
+    user = models.ForeignKey(Client)
+    fi = models.FileField(validators=[validate_file])
+    date=models.DateTimeField(auto_now_add=True)
+    num_pages=models.IntegerField( )
+    is_colored = models.BooleanField(default=False) # является ли печать цветной
+    with_clip = models.BooleanField(default=False)  # идет ли в комплект скрепка
+    with_clamp = models.BooleanField(default=False) #идет ли в комплект захим степлером
+
+
+
+
+
+
+
 admin.site.register(Client)
-        
-        
+admin.site.register(Printing)      
   
 
 
