@@ -62,5 +62,5 @@ def client_homepage(request):
 		return render(request,'app/client_homepage.html')
 	else:
 	
-		return redirect(request,'/login') 
+		return render(request,'app/client_login_page.html')
 	
