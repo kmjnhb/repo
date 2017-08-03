@@ -10,6 +10,7 @@ from django.contrib import auth
 from django.http import HttpResponse
 
 from django.shortcuts import redirect
+from PyPDF2 import PdfFileReader
 def client_login(request):
 
     if request.method == 'POST':
@@ -42,7 +43,8 @@ def upload(request):
 	if request.method =='POST':
 		upload_form = UploadFileForm(request.POST, request.FILES)
 		if upload_form.is_valid():
-			return HttpResponse('OK')
+			file = upload_form.cleaned_data.get('file')
+			return HttpResponse(PdfFileReader(file).getNumPages())
 		
 
 	else:
@@ -50,14 +52,6 @@ def upload(request):
 	return render(request,'app/upload.html',{'upload_form':upload_form})
 		
 	
-
-
-
-
-
-
-
-
 
 def client_register(request):
 	if request.method=='POST':

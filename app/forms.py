@@ -51,7 +51,7 @@ class UserLoginForm(forms.ModelForm):
 class UploadFileForm(forms.ModelForm):
 	class Meta:
 		model = Printing
-		fields = ['fi','is_colored','with_clip','with_clamp']
+		fields = ['file','is_colored','with_clip','with_clamp']
 
 
 
