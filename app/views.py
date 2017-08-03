@@ -17,20 +17,24 @@ def client_login(request):
 
         user = auth.authenticate(username=username, password=password)
 
-        #проверяем что пользователь не NONE, и что он относиться к группе Клиент
+        #проверяем что пользователь не NONE, и что он относится к группе Клиент
         if user and user.client.is_client:
             if user.is_active:
                 auth.login(request, user)
                 return redirect('/')
         else:
-        	pass
-            #TODO обработка не правильно логина
-           
-            
+        	return HttpResponse("Неверный логин или пароль")
+                     
 
     
     else:       
         return render(request,'app/client_login_page.html')
+
+
+def manager_login(request):
+	pass
+	
+
 
 def client_register(request):
 	if request.method=='POST':
@@ -58,5 +62,5 @@ def client_homepage(request):
 		return render(request,'app/client_homepage.html')
 	else:
 	
-		redirect(request,'/login') 
+		return redirect(request,'/login') 
 	

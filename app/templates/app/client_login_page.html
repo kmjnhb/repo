@@ -1,51 +1,73 @@
-<html lang="en-us" >
+
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}  
 <head>
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/login.css" />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap.min.css' %}" />
+    
+
+    <!-- MetisMenu CSS -->
+     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/metisMenu.min.css' %}" />
+
+
+    <!-- Custom CSS -->
+       <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/sb-admin-2.min.css' %}" />
+   
+
+    <!-- Custom Fonts -->
+     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/font-awesome.min.css' %}" />
+   
+    
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
-<body class=" login"
-data-admin-utc-offset="0">
 
-<!-- Container -->
-<div id="container">
+<body>
 
-
-    <!-- Header -->
-    <div id="header">
-        <div id="branding">
-
-            <h1 id="site-name" style="color:white">Войти</a></h1>
-
+    <div class="container" >
+        <div class="row" >
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Войти в личный кабинет</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" method="POST">
+                        {%csrf_token%}
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Имя пользователя" name="username"  autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Пароль" name="password" type="password" value="">
+                                </div>
+                                
+                                <!-- Change this to a button or input when using this as a form -->
+                                <input class="btn btn-lg btn-success btn-block" value="Войти" type="submit" />
+                                <a href="/register">Регистрация</a>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        
     </div>
-    <!-- END Header -->
-    <!-- Content -->
-    <div id="content" class="colM">
-
-        
-        <form id="login_form" method="post" >
-            {% csrf_token %}
-            Username: <input type="text" name="username" value="" size="50" />
-            <br />
-            Password: <input type="password" name="password" value="" size="50" />
-            <br />
-
-            <input type="submit" value="submit" />
-        </form>
-<a href="/register">Регистрация </a>
-
-  </div>   
-
-  <br class="clear" />
-</div>
-<!-- END Content -->
-
-<div id="footer"></div>
-</div>
-<!-- END Container -->
 
 </body>
+
 </html>
