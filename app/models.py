@@ -14,7 +14,7 @@ class University(models.Model):
 
 class Dormitory(models.Model):
     name = models.CharField(max_length=100, blank=True)
-    
+
     def __str__(self):
         return self.name
     #это связь скорее всего лишняя
@@ -31,15 +31,7 @@ class FranchiseAdmin(models.Model):
     
 
 
-    @receiver(post_save, sender=User)
-    def create_user_client(sender, instance, created, **kwargs):
-        if created:
-            client =Client(user=instance)
-            client.save()
-
-    @receiver(post_save, sender=User)
-    def save_user_client(sender, instance, **kwargs):
-        instance.client.save()
+ 
 
 
 
@@ -48,24 +40,18 @@ class FranchiseAdmin(models.Model):
 
 
 class Client(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    is_client = models.BooleanField(default = False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
+    is_client = models.BooleanField(default = True)
     city = models.CharField(max_length=20,blank=True)
-    university = models.ForeignKey(University)
-    dormitory = models.ForeignKey(Dormitory)
+    university = models.ForeignKey(University,null=True)
+    dormitory = models.ForeignKey(Dormitory,null=True)
     room = models.CharField(max_length=15,blank=True)
     phonenumber = models.CharField(max_length=11,blank=True)
 
 
-    @receiver(post_save, sender=User)
-    def create_user_client(sender, instance, created, **kwargs):
-    	if created:
-    		client =Client(user=instance)
-    		client.save()
-
-    @receiver(post_save, sender=User)
-    def save_user_client(sender, instance, **kwargs):
-    	instance.client.save()
+    def save(self, *args, **kwargs):
+        super(Client, self).save(*args, **kwargs)
+        
 
 
 
@@ -78,16 +64,6 @@ class Manager(models.Model):
     
 	
     
-
-    @receiver(post_save, sender=User)
-    def create_user_client(sender, instance, created, **kwargs):
-        if created:
-            client =Client(user=instance)
-            client.save()
-
-    @receiver(post_save, sender=User)
-    def save_user_client(sender, instance, **kwargs):
-        instance.client.save()
 
 
 
@@ -105,5 +81,5 @@ class Printing(models.Model):
 admin.site.register(Client)
 admin.site.register(Printing)      
 admin.site.register(University)  
-
+admin.site.register(Dormitory)  
 

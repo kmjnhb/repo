@@ -25,11 +25,11 @@ class RegisterUserForm(forms.ModelForm):
 
 #queryset=Contact.objects.none(), widget=forms.CheckboxSelectMultiple()
 class RegisterClientForm(forms.ModelForm):
-	#universitet = forms.ModelChoiceField(queryset = University.objects.all())
+	
 
 	class Meta:
 		model = Client
-		fields = ['city','dormitory','room','phonenumber','university','dormitory']
+		fields = ['city','dormitory','room','phonenumber','dormitory','university']
 
 	def __init__(self, *args, **kwargs):
 		super(RegisterClientForm, self).__init__(*args, **kwargs)

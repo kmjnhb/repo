@@ -5,6 +5,7 @@ from .forms import RegisterUserForm
 from .forms import UserLoginForm
 from .forms import UploadFileForm
 from .models import Client
+from .models import University
 from django.contrib import auth
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -60,14 +61,19 @@ def client_register(request):
 		client_form = RegisterClientForm(request.POST)
 		user_form = RegisterUserForm(request.POST)
 		if client_form.is_valid() and user_form.is_valid():
+			user=user_form.save()
+
+			client = client_form.save(commit=False)
+			client.user = user
+			client.city = client_form.cleaned_data.get('city')
+			client.university = client_form.cleaned_data['university']
+			client.dormitory = client_form.cleaned_data['dormitory']
+			client.room = client_form.cleaned_data.get('room')
+			client.phonenumber = client_form.cleaned_data.get('phonenumber')
+			client.save()
 			
-			user = user_form.save()
-			user.client.is_client = True
-			user.client.city = client_form.cleaned_data.get('city')
-			user.client.room = client_form.cleaned_data.get('room')
-			user.client.phonenumber = client_form.cleaned_data.get('phonenumber')
-			user.save()
-			return HttpResponse("asd")
+			
+			
 			
 	else:
 		client_form = RegisterClientForm()
