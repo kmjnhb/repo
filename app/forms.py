@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import Client
 from .models import Printing
+from .models import University
 from django.contrib import auth
 
 
@@ -22,19 +23,22 @@ class RegisterUserForm(forms.ModelForm):
         
         
 
-
+#queryset=Contact.objects.none(), widget=forms.CheckboxSelectMultiple()
 class RegisterClientForm(forms.ModelForm):
+	#universitet = forms.ModelChoiceField(queryset = University.objects.all())
+
 	class Meta:
 		model = Client
-		fields = ['city','university','dormitory','room','phonenumber']
+		fields = ['city','dormitory','room','phonenumber','university','dormitory']
 
 	def __init__(self, *args, **kwargs):
 		super(RegisterClientForm, self).__init__(*args, **kwargs)
 		self.fields['city'].label = 'Город'
-		self.fields['university'].label = 'Университет'
 		self.fields['dormitory'].label = 'Общежитие'
 		self.fields['room'].label = 'Комната'
 		self.fields['phonenumber'].label = 'Номер телефона'
+		self.fields['university'].widget.attrs = {'class':'form-control'} 
+		self.fields['dormitory'].widget.attrs = {'class':'form-control'} 
 
 
 

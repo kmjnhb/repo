@@ -6,11 +6,12 @@ from .forms import UserLoginForm
 from .forms import UploadFileForm
 from .models import Client
 from django.contrib import auth
-# Create your views here.
 from django.http import HttpResponse
-
 from django.shortcuts import redirect
 from PyPDF2 import PdfFileReader
+
+
+
 def client_login(request):
 
     if request.method == 'POST':
@@ -27,10 +28,11 @@ def client_login(request):
         else:
         	return HttpResponse("Неверный логин или пароль")
                      
-
     
     else:       
         return render(request,'app/client_login_page.html')
+
+
 
 
 def manager_login(request):
@@ -62,11 +64,10 @@ def client_register(request):
 			user = user_form.save()
 			user.client.is_client = True
 			user.client.city = client_form.cleaned_data.get('city')
-			user.client.university = client_form.cleaned_data.get('university')
-			user.client.dormitory = client_form.cleaned_data.get('dormitory')
 			user.client.room = client_form.cleaned_data.get('room')
 			user.client.phonenumber = client_form.cleaned_data.get('phonenumber')
 			user.save()
+			return HttpResponse("asd")
 			
 	else:
 		client_form = RegisterClientForm()

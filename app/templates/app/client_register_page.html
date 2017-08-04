@@ -36,7 +36,8 @@
     <![endif]-->
 
 </head>
-
+'city','dormitory','room','phonenumber','university','dormitory'
+client_form.phonenumber
 <body>
 
     <div class="container" >
@@ -56,13 +57,36 @@
                                 </div>
                             </fieldset>
                         {% endfor %}
-                        {% for field in client_form %}
+
+                       
                         <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="{{field.label}}" name={{field.name}}  autofocus>
+                                    <input class="form-control" placeholder="{{client_form.city.label}}" name={{client_form.city.name}}  autofocus>
                                 </div>
-                            </fieldset>
-                        {% endfor %}
+                        </fieldset>
+                        <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="{{client_form.dormitory.label}}" name={{client_form.dormitory.name}}  autofocus>
+                                </div>
+                        </fieldset>
+                        <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="{{client_form.room.label}}" name={{client_form.room.name}}  autofocus>
+                                </div>
+                        </fieldset>
+                        <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="{{client_form.phonenumber.label}}" name={{client_form.phonenumber.name}}  autofocus>
+                                </div>
+                        </fieldset>
+                       
+                        
+                            <div class="form-group">
+                        {{client_form.university}}
+                        </div>
+                        <div class="form-group">
+                        {{client_form.dormitory}}
+                        </div>
                       <input class="btn btn-lg btn-success btn-block" value="Регистрация" type="submit" />
                                 <a href="/login">Войти</a>
                 
