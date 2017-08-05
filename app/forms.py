@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .models import Client
 from .models import Printing
 from .models import University
+from .models import Manager
 from django.contrib import auth
 
 
@@ -42,13 +43,24 @@ class RegisterClientForm(forms.ModelForm):
 
 
 
+
+class RegisterManagerForm(forms.ModelForm):
+
+	class Meta:
+		model = Manager
+		fields = ['dormitory']
+
+		def __init__(self,*args,**kwargs):
+			self.fields['dormitory'].lavel = 'Общежитие'
+
+			
+
+
 		
 class UserLoginForm(forms.ModelForm):
 	class Meta:
 		model = User
 		fields = ['username','password']
-
-
 
 
 
