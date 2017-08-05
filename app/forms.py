@@ -4,6 +4,7 @@ from .models import Client
 from .models import Printing
 from .models import University
 from .models import Manager
+from .models import FranchiseAdmin
 from django.contrib import auth
 
 
@@ -14,6 +15,8 @@ class RegisterUserForm(forms.ModelForm):
 
 
 	def __init__(self, *args, **kwargs):
+
+		
 		super(RegisterUserForm, self).__init__(*args, **kwargs)
 		self.fields['username'].label = 'Имя пользователя'
 		self.fields['first_name'].label = 'Имя'
@@ -44,14 +47,25 @@ class RegisterClientForm(forms.ModelForm):
 
 
 
+class FranchiseAdmin(forms.ModelForm):
+
+	class Meta:
+		model = FranchiseAdmin
+		fields = ['city','university','room','phonenumber']
+
+
+
 class RegisterManagerForm(forms.ModelForm):
 
 	class Meta:
 		model = Manager
 		fields = ['dormitory']
 
-		def __init__(self,*args,**kwargs):
-			self.fields['dormitory'].lavel = 'Общежитие'
+	def __init__(self, *args, **kwargs):
+		super(RegisterManagerForm, self).__init__(*args, **kwargs)
+		self.fields['dormitory'].widget.attrs = {'class':'form-control'} 
+
+		
 
 			
 
