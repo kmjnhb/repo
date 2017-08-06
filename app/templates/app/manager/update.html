@@ -43,7 +43,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Регистрация менеджера</h3>
+                        <h3 class="panel-title">Редактирование менеджера</h3>
                     </div>
                     <div class="panel-body">
                        
@@ -53,7 +53,7 @@
                         {% for field in user_form %}
                         <fieldset>
                                 <div class="form-group">
-                                                                    <input class="form-control" placeholder="{{field.label}}" name={{field.name}}  autofocus>
+                                                                    <input class="form-control" placeholder="{{field.label}}" name={{field.name}}  autofocus value ={{field.value}}>
                                                                 </div>
                             </fieldset>
                         {% endfor %}
@@ -63,8 +63,8 @@
                         <div class="form-group">
                         {{manager_form.dormitory}}
                         </div>
-                      <input class="btn btn-lg btn-success btn-block" value="Регистрация" type="submit" />
-                                <a href="/login">Войти</a>
+                      <input class="btn btn-lg btn-success btn-block" value="Редактировать" type="submit" />
+                                
                 
                         </form>
 

@@ -22,6 +22,10 @@ class FranchiseAdmin(models.Model):
 
     def save(self, *args, **kwargs):
         super(FranchiseAdmin, self).save(*args, **kwargs)
+
+
+    def __str__(self):
+        return self.user.username
     
 
 
@@ -50,6 +54,9 @@ class Client(models.Model):
 
     def save(self, *args, **kwargs):
         super(Client, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.user.username
         
 
 
@@ -57,12 +64,14 @@ class Client(models.Model):
 class Manager(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     fadmin = models.ForeignKey(FranchiseAdmin,null=True)
-    is_manager = models.BooleanField(default = True)
     dormitory = models.ForeignKey(Dormitory,null=True)
     phonenumber = models.CharField(max_length=11,blank=True)
 
     def save(self, *args, **kwargs):
         super(Manager, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.user.username
 	
     
 	

@@ -8,7 +8,7 @@ from .models import FranchiseAdmin
 from django.contrib import auth
 
 
-class RegisterUserForm(forms.ModelForm):
+class UserForm(forms.ModelForm):
 	class Meta:
 		model = User
 		fields = ['username','first_name','last_name','password','email']
@@ -17,7 +17,7 @@ class RegisterUserForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 
 		
-		super(RegisterUserForm, self).__init__(*args, **kwargs)
+		super(UserForm, self).__init__(*args, **kwargs)
 		self.fields['username'].label = 'Имя пользователя'
 		self.fields['first_name'].label = 'Имя'
 		self.fields['last_name'].label = 'Фамилия'
@@ -55,14 +55,14 @@ class FranchiseAdmin(forms.ModelForm):
 
 
 
-class RegisterManagerForm(forms.ModelForm):
+class ManagerForm(forms.ModelForm):
 
 	class Meta:
 		model = Manager
 		fields = ['dormitory']
 
 	def __init__(self, *args, **kwargs):
-		super(RegisterManagerForm, self).__init__(*args, **kwargs)
+		super(ManagerForm, self).__init__(*args, **kwargs)
 		self.fields['dormitory'].widget.attrs = {'class':'form-control'} 
 
 		
